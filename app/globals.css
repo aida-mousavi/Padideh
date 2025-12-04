@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+
+:root {
+    --gradient-light: linear-gradient(to bottom, #F6F6F6 24%, #FFFFFF 82%, #FFFFFF 100%);
+}
+
+
+  @font-face {
+    font-family: "IRANYEKAN";
+    src: url("/font/IRANYEKANXVFANUMVF.TTF") format("truetype");
+    /* font-weight: 300; */
+  /* font-style: normal; */
+  }
+
+  @utility container-base {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  @utility container-xl {
+    margin-inline: auto;
+    padding-inline: 3rem;
+    max-width: 1440px;
+  }
+  
+  @utility container-2xl {
+    margin-inline: auto;
+    padding-inline: 2rem;
+    width: 100%;
+    max-width: 1680px;
+  }
+
+  @utility container-3xl {
+    margin-inline: auto;
+    padding-inline: 4rem;
+    width: 100%;
+    max-width: 1920px;
+  }
+
+  @utility container-custom-none {
+    margin-inline: auto;
+    padding-inline: 0rem;
+    width: 100%;
+    max-width: 1920px;
+  }
+
+  
+  
+
+  @layer utilities {
+
+    /* .site-container {
+      @apply w-full mx-auto px-4 max-w-[1360px];
+    } */
+
+    @keyframes drawFromRightStroke {
+      from { stroke-dashoffset: var(--dash-start); }
+      to   { stroke-dashoffset: 0; }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+  
+    .draw-stroke {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      will-change: stroke-dashoffset;
+    }
+  }
+  
+  
+  
+
+
+@theme {
+  --color-nuetral-main-20: #EFEFEF;
+    --color-nuetral-main-40: #C7C7C7;
+    --color-nuetral-main-90: #4C4747;
+    --color-outline: #757E8A;
+    --color-blue-logo-9: #3E53C5;
+    --color-blue-secondary: #64A5FF;
+    --color-blue-brand: #2B59CE;
+    --color-blue-prime-100: #DCEBFF;
+    --color-blue-prime-50: #F2F7FF;
+    --color-blue-fill-active: #3B82F6;
+    --color-blue-logo-0: #449AE7;
+    --color-blue-main: #10308A;
+    --color-primary-main-60: #E8EDFC;
+    --color-primary-main-10: #13379E;
+    --color-primary-main-60: #E8EDFC;
+    --color-gray-main-50: #F6F7F9;
+    --color-gray-active: #C8CCD0;
+    --color-red-attentive: #F43F5E;
+    --color-red-intormative: #F43F5E;
+    --color-ambre: #FBD88F;
+    --color-cayan: #B3E7F9;
+    --color-pink: #FCBDE7;
+    --color-berry: #FCC8D0;
+    --color-matcha: #CDED9D;
+    --color-indiago: #D3D0FF;
+    --color-black-body: #292C31;
+    --color-dark-main: #0B0B0B;
+    --color-gray-mute: #827E7D;
+    --color-gray-100: #EAEDF0;
+  
+
+    --font-IRANYEKAN: "IRANYEKAN"
+  }
+
+
+
+
+body{
+    font-family: var(--font-IRANYEKAN), sans-serif;
+direction: rtl;
+    padding: 0;
+    margin: 0;
+}
+
+ul{
+    list-style: none;
+}
+li{
+    list-style: none;
+}
+
