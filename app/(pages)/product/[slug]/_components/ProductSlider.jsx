@@ -6,7 +6,7 @@ import ProductSwiper from "./ProductSwiper";
 export default async function ProductSlider() {
 
   const {data:productIndexData} = await productIndex();
-  console.log(productIndexData)
+
 
   return (
     <div className="w-full ps-4 md:!mt-12">

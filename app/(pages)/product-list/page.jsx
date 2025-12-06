@@ -6,7 +6,6 @@ import { text } from "@/public/utill/staticText";
 export default async function page() {
   const { data: productIndexData } = await productIndex();
 
-  console.log(productIndexData)
   return (
     <section className="w-full  ">
       <Title title={text.product} />
