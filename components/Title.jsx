@@ -1,6 +1,6 @@
 export default function Title({ title = null, description, children = null }) {
   return (
-    <div className="w-full  mb-12 ">
+    <div className="w-full mb-6  md:mb-12 ">
       <div className="w-full   relative">
         <div className="w-full h-[1.5px] border-b-[1.5px] border-gray-active absolute top-[50%] left-0 -translate-y-[50%] z-[-1]"></div>
 
@@ -15,7 +15,7 @@ export default function Title({ title = null, description, children = null }) {
         </div>
       </div>
 
-      <div className="text-sm md:text-xl text-nuetral-main-90 font-light mt-1   md:mt-3  container-base md:container-xl">
+      <div className="text-xs md:text-sm lg:text-xl text-nuetral-main-90 font-light mt-1   md:mt-3  container-base md:container-xl">
         {description}
       </div>
     </div>

@@ -8,11 +8,11 @@ function Hero() {
     <section
       className={"w-full   h-[496px] md:h-[778px]  relative text-white "}>
       <div className="bg-[url('/image/image-hero.png')] bg-cover h-full bg-bottom  ">
-        <ArrowPointer />
         <div className=" md:flex    justify-between items-center md:container-xl  md:h-full pt-20 md:pt-0 ">
           <CirclesChannle />
           <IntroduceCompany />
         </div>
+        <ArrowPointer />
       </div>
     </section>
   );

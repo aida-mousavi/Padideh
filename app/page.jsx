@@ -13,7 +13,7 @@ import Contact from "@/components/contact-us/Contact";
 
 function Page() {
   return (
-    <section className="space-y-20 overflow-hidden max-w-[1920px] mx-auto">
+    <section className=" space-y-10 md:space-y-20 overflow-hidden max-w-[1920px] mx-auto">
       <Hero />
       <TechPanel />
       <Certificate />
