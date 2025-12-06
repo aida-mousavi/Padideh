@@ -1,7 +1,12 @@
 import Title from "@/components/Title";
+import useShamsiDate from "@/hooks/useShamsiDate";
 import Image from "next/image";
 
 export default function SingleProjectSection({ data }) {
+
+ 
+
+
   const {
     location,
     date,
@@ -15,11 +20,16 @@ export default function SingleProjectSection({ data }) {
     images,
   } = data || {};
 
+
+
+
+  
+
   return (
     <div className="space-y-8">
       <Title>
         <span className="text-black-body">{location}</span>
-        <span className="text-blue-brand px-3">{date}</span>
+        <span className="text-blue-brand px-3">{useShamsiDate(date)}</span>
       </Title>
 
       <div className="container-base md:container-xl w-full">

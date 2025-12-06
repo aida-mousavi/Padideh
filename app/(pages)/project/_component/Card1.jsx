@@ -1,6 +1,8 @@
+import useShamsiDate from "@/hooks/useShamsiDate";
 import Image from "next/image";
 
 export default function Card1({ item, order=1 }) {
+
 
   return (
     <div className="h-[472px] w-[264px] md:w-[365px] flex flex-col justify-between flex-wrap">
@@ -10,7 +12,7 @@ export default function Card1({ item, order=1 }) {
         </div>
         <div className="text-2xl lg:text-[28px] font-semibold line-clamp-1 ">{item?.projectTitle}</div>
         <div className="text-black-body font-light text-lg lg:text-2xl ">
-          {item?.date ?? "اردیبهشت | 1404!"}
+        {useShamsiDate(item?.date)}
         </div>
       </div>
       <div className={`w-full h-[304px] lg:h-[55%] rounded-4xl   ${order===1 ? "order-2":"order-1"}`}>
