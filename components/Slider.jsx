@@ -10,16 +10,8 @@ export default function Slider() {
 
   return (
     <section className="w-full ">
-
-      
-
           <Title title={text.product} description={text.firstAndOnly}/>
           <ProductSlider/>
-
-     
-
-       
-    
     </section>
   );
 }
