@@ -1,21 +1,32 @@
 "use client";
-import React from 'react';
+
+import React from "react";
 import Sidebar from "@/app/panel/_components/Sidebar";
 import HeadNavbar from "@/app/panel/_components/HeadNavbar";
-// ------------------------------------------------------------------>
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const Layout = ({children}) => {
     return (
-        <section className={"w-full h-screen flex"}>
-            <div className={""}>
-                <Sidebar/>
-            </div>
+        <QueryClientProvider client={queryClient}>
+            <section className="w-full h-screen flex overflow-hidden">
+                {/* Sidebar */}
+                <div>
+                    <Sidebar/>
+                </div>
 
-            <div className={"w-full"}>
-                <HeadNavbar/>
-                <main className={"container mx-auto mt-10"}>{children}</main>
-            </div>
-        </section>
+                {/* Content */}
+                <div className="w-full flex flex-col">
+                    <HeadNavbar/>
+
+                    {/* ✅ فقط این بخش اسکرول میخوره */}
+                    <main className="flex-1 overflow-y-auto container mx-auto mt-10">
+                        {children}
+                    </main>
+                </div>
+            </section>
+        </QueryClientProvider>
     );
 };
 

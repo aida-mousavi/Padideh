@@ -19,7 +19,7 @@ const HeadNavbar = () => {
     };
 
     return (
-        <header className="w-full border-b bg-background">
+        <header className="w-full border-b bg-background fixed top-0 z-10">
             <div className="flex h-14 items-center justify-between px-5">
                 {/* User name */}
                 <p className="text-sm font-semibold">{username}</p>
