@@ -16,9 +16,8 @@ import {usePathname} from "next/navigation";
 export default function Footer() {
     const pathname = usePathname();
 
-    return (
-        <>
-            {!pathname.includes("panel") ? (
+    return (<>
+            {!pathname.includes("panel") && !pathname.includes("login") ? (
                 <footer className="w-full  text-white  bg-blue-logo-0   md:pt-7 pt-4  relative mt-20 ">
                     <div
                         className="container-base text-sm md:text-base md:container-xl flex flex-wrap lg:flex-nowrap lg:space-x-3 justify-between gap-y-4 ">
@@ -111,8 +110,6 @@ export default function Footer() {
                         />
                         <span>{footer.copyright}</span>
                     </div>
-                </footer>
-            ) : null}
-        </>
-    );
+                </footer>) : null}
+        </>);
 }
