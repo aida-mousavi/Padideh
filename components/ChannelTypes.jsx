@@ -17,8 +17,8 @@ export default function ChannelTypes() {
 
 
           <div className="w-full p-2 text-sm md:text-base gap-x-3  flex ">
-            {channelTypes.typesTitle?.map((item) => (
-            <div>
+            {channelTypes.typesTitle?.map((item,i) => (
+            <div key={i}>
                 <div
               onChange={() => setchannel(item.type)}
                 className={`cursor-pointer flex items-center mb-2 justify-center gap-1 ${item.type === channel ? "text-blue-fill-active" :"text-gray-mute"}`}

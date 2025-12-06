@@ -348,7 +348,8 @@ export const services = [
 
 
 export const blogList={
-  knowledge:"دانش فنی، ایده‌های نو؛ هرآنچه در صنعت تهویه باید بدانید"
+  knowledge:"دانش فنی، ایده‌های نو؛ هرآنچه در صنعت تهویه باید بدانید",
+  knowMore:"بیشتر بدانید"
 }
 
 
