@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 
 import Card from "@/components/Card";
 export default function ProductSwiper({ productIndexData }) {
-  console.log(productIndexData);
 
   return (
     <div className="">
