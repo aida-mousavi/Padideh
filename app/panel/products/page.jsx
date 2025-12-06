@@ -7,7 +7,8 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import Image from "next/image";
 import config from "@/config/appConfig";
 import {Button} from "@/components/ui/button";
-import {SquarePen, Trash2} from "lucide-react";
+import {Plus, SquarePen, Trash2} from "lucide-react";
+import Link from "next/link";
 // ------------------------------------------------------------------------------------->
 
 const ProductsPage = () => {
@@ -25,7 +26,15 @@ const ProductsPage = () => {
 
 
     return (<section className="p-6">
-        <h1 className="text-xl font-bold mb-4">لیست محصولات</h1>
+        <div className={"flex items-center justify-between mb-10"}>
+            <h1 className="text-xl font-bold mb-4">لیست محصولات</h1>
+
+            <Link href={"/panel/products/create"}>
+                <Button className={"bg-green-700"}>
+                    <Plus/>
+                </Button>
+            </Link>
+        </div>
         <div>
             <Table>
                 {/*Head Titles*/}
@@ -36,28 +45,27 @@ const ProductsPage = () => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {products?.map((product) => (
-                        <TableRow key={product.id}>
-                            <TableCell>
-                                <Image src={config.urlImage + product.image[0]} width={60} height={60}
-                                       alt={product?.title}/>
-                            </TableCell>
-                            <TableCell>
-                                <p className={"line-clamp-1"}>{product?.title}</p>
-                            </TableCell>
-                            <TableCell>
-                                <p className={"line-clamp-1"}>{product?.brand}</p>
-                            </TableCell>
-                            <TableCell>
-                                <p className={"line-clamp-1"}>{product?.category}</p>
-                            </TableCell>
-                            <TableCell className={"flex items-center gap-2"}>
-                                <Button size={"sm"} className={"bg-red-600 font-medium"}> <Trash2/> حذف</Button>
-                                <Button size={"sm"} className={"bg-orange-500 font-medium"}> <SquarePen/>ویرایش
-                                </Button>
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                    {products?.map((product) => (<TableRow key={product.id}>
+                        <TableCell>
+                            <Image src={config.urlImage + product.image[0]} width={60} height={60}
+                                   alt={product?.title}/>
+                        </TableCell>
+                        <TableCell>
+                            <p className={"line-clamp-1"}>{product?.title}</p>
+                        </TableCell>
+                        <TableCell>
+                            <p className={"line-clamp-1"}>{product?.brand}</p>
+                        </TableCell>
+                        <TableCell>
+                            <p className={"line-clamp-1"}>{product?.category}</p>
+                        </TableCell>
+                        <TableCell className={"flex items-center gap-2"}>
+                            <Button size={"sm"} className={"bg-red-600 font-medium cursor-pointer"}>
+                                <Trash2/> حذف</Button>
+                            <Button size={"sm"} className={"bg-orange-500 font-medium cursor-pointer"}> <SquarePen/>ویرایش
+                            </Button>
+                        </TableCell>
+                    </TableRow>))}
                 </TableBody>
             </Table>
         </div>

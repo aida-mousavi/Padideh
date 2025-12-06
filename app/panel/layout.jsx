@@ -20,8 +20,7 @@ const Layout = ({children}) => {
                 <div className="w-full flex flex-col">
                     <HeadNavbar/>
 
-                    {/* ✅ فقط این بخش اسکرول میخوره */}
-                    <main className="flex-1 overflow-y-auto container mx-auto mt-10">
+                    <main className="flex-1 overflow-y-auto container mx-auto mt-16">
                         {children}
                     </main>
                 </div>
