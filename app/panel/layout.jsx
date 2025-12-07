@@ -11,10 +11,10 @@ const queryClient = new QueryClient();
 
 const Layout = ({children}) => {
     const router = useRouter();
-    const user = localStorage.getItem("user");
-    const token = Cookies.get("token")
+
+    const token = Cookies.get("token");
     if (!token) {
-        router.push("/auth");
+    router.push("/login");
     }
     return (
         <QueryClientProvider client={queryClient}>
@@ -26,7 +26,7 @@ const Layout = ({children}) => {
 
                 {/* Content */}
                 <div className="w-full flex flex-col">
-                    <HeadNavbar user={JSON.parse(user)}/>
+                    <HeadNavbar/>
 
                     <main className="flex-1 overflow-y-auto container mx-auto mt-16">
                         {children}

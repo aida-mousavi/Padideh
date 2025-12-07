@@ -46,8 +46,10 @@ const ProductsPage = () => {
                     {products?.map((product) => (
                         <TableRow key={product.id}>
                             <TableCell>
-                                <Image src={config.urlImage + product.image[0]} width={60} height={60}
-                                       alt={product?.title}/>
+                                {product.image ? (
+                                    <Image src={config.urlImage + product.image[0]} width={60} height={60}
+                                           alt={product?.title}/>
+                                ) : null}
                             </TableCell>
                             <TableCell>
                                 <p className={"line-clamp-1"}>{product?.title}</p>

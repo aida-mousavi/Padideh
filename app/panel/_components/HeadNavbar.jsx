@@ -1,4 +1,7 @@
-import React from "react";
+'use client';
+
+import React, {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,14 +12,31 @@ import {Avatar, AvatarFallback} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
 import {LogOut, User} from "lucide-react";
 
-const HeadNavbar = ({user}) => {
-    console.log(user)
-    // TODO: Replace with API data
-    const username = user.username || user.mobile
+const HeadNavbar = () => {
+    const router = useRouter();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        try {
+            const raw = window.localStorage.getItem("user");
+            if (raw) setUser(JSON.parse(raw));
+        } catch (e) {
+            console.warn("Failed to read user from localStorage:", e);
+            setUser(null);
+        }
+    }, []);
+
+    const username = user?.username ?? user?.mobile ?? "کاربر";
 
     const handleLogout = () => {
         console.log("logout...");
-        // TODO: logout logic
+        try {
+            window.localStorage.removeItem("user");
+        } catch (e) {
+            console.warn("Failed to remove user from localStorage:", e);
+        }
+        // Redirect to login (adjust path as needed)
+        router.push("/login");
     };
 
     return (
@@ -31,7 +51,8 @@ const HeadNavbar = ({user}) => {
                         <Button variant="ghost" className="h-9 w-9 rounded-full p-0">
                             <Avatar className="h-8 w-8">
                                 <AvatarFallback className="font-bold border-2 border-indigo-600">
-                                    <User/>
+                                    {/* اگر بخوایم حرف اول نام کاربر نشون بدیم */}
+                                    {user?.username ? user.username.charAt(0).toUpperCase() : <User/>}
                                 </AvatarFallback>
                             </Avatar>
                         </Button>
