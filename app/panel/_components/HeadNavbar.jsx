@@ -9,9 +9,10 @@ import {Avatar, AvatarFallback} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
 import {LogOut, User} from "lucide-react";
 
-const HeadNavbar = () => {
+const HeadNavbar = ({user}) => {
+    console.log(user)
     // TODO: Replace with API data
-    const username = "رضا حسین زاده";
+    const username = user.username || user.mobile
 
     const handleLogout = () => {
         console.log("logout...");

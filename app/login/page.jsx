@@ -46,6 +46,7 @@ export default function LoginPage() {
                     secure: true,
                     sameSite: "strict",
                 });
+                window.localStorage.setItem("user", JSON.stringify(data.data.user));
                 toast.success(data?.data?.message);
                 router.push("/panel")
             },
