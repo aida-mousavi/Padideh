@@ -9,10 +9,17 @@ import config from "@/config/appConfig";
 import {Button} from "@/components/ui/button";
 import {Plus, SquarePen, Trash2} from "lucide-react";
 import Link from "next/link";
+import {deleteProduct, useDeleteProduct} from "@/http/api/product/hooks/products-delete";
+import toast from "react-hot-toast";
 // ------------------------------------------------------------------------------------->
 
 const ProductsPage = () => {
-    const TAB_HEADS = ["تصویر", "عنوان", "برند", "دسته بندی", "عملیات"]
+    const TAB_HEADS = ["تصویر", "عنوان", "برند", "دسته بندی", "عملیات"];
+    const {mutate, isPending} = useDeleteProduct(TAB_HEADS);
+
+    const deleteProductHandler = (id) => {
+        mutate(id)
+    }
 
     const {data, isLoading} = useGetProduct();
 
@@ -61,7 +68,8 @@ const ProductsPage = () => {
                                 <p className={"line-clamp-1"}>{product?.category}</p>
                             </TableCell>
                             <TableCell className={"flex items-center gap-2"}>
-                                <Button size={"sm"} className={"bg-red-600 font-medium cursor-pointer"}>
+                                <Button size={"sm"} className={"bg-red-600 font-medium cursor-pointer"}
+                                        onClick={() => deleteProduct(product.id)}>
                                     <Trash2/> حذف</Button>
                                 <Button size={"sm"} className={"bg-orange-500 font-medium cursor-pointer"}> <SquarePen/>ویرایش
                                 </Button>
