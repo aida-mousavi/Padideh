@@ -11,7 +11,7 @@ import {useGetBlogs} from "@/http/api/blog/hooks/blogs-index";
 import config from "@/config/appConfig";
 
 const BlogsPage = () => {
-    const TAB_HEADS = ["تصویر", "عنوان", "زمان" ,"تگ ها", "عملیات"]
+    const TAB_HEADS = ["تصویر", "عنوان", "زمان" ,"تگ ها ", "عملیات"]
     const {data, isLoading} = useGetBlogs();
 
     if (isLoading) {

@@ -4,12 +4,15 @@ import React from "react";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
-
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {useLogin} from "@/http/api/auth/login-api";
+import {useRouter} from "next/navigation";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+// ---------------------------------------------------------------------------------------------------------------->
 
 
 // ✅ Validation Schema
@@ -29,10 +32,24 @@ export default function LoginPage() {
         resolver: zodResolver(loginSchema),
     });
     const {mutate, isPending} = useLogin();
+    const router = useRouter();
+
 
     // ✅ Submit Handler
     const onSubmit = async (data) => {
-        mutate(data);
+        mutate(data, {
+            onSuccess: (data) => {
+
+                // Save token in cookie
+                Cookies.set("token", data.data?.access_token, {
+                    expires: 7,       // 7 days
+                    secure: true,
+                    sameSite: "strict",
+                });
+                toast.success(data?.data?.message);
+                router.push("/panel")
+            },
+        });
     };
 
     return (

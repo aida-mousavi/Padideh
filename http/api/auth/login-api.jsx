@@ -1,7 +1,7 @@
 "use client";
 import {useMutation} from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import Cookies from "js-cookie";
+
 
 export async function Login(data) {
     const res = await fetch("https://ricksanchezz.ir/v1/auth/login", {
@@ -29,18 +29,6 @@ export const useLogin = () => {
         onError: (error) => {
             console.log("LOGIN ERROR:", error);
             toast.error(error.message || "خطا در ورود");
-        },
-
-        onSuccess: (data) => {
-            console.log("LOGIN SUCCESS:", data);
-
-            // Save token in cookie
-            Cookies.set("access_token", data.data?.access_token, {
-                expires: 7,       // 7 days
-                secure: true,
-                sameSite: "strict",
-            });
-            toast.success(data?.data?.message);
         },
     });
 };
