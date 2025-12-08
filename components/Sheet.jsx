@@ -37,7 +37,7 @@ function Sheet() {
           />
           <AnimatedLine
             customClass={
-              "-rotate-90 lg:rotate-0 left-[41px] bottom-[18%] lg:right-[70%] lg:top-[30%] "
+              "-rotate-90 lg:rotate-0 left-[41px] bottom-[17%] lg:right-[70%] lg:top-[20%] z-30 lg:z-20 "
             }
           />
         </div>

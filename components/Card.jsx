@@ -19,7 +19,7 @@ export default function Card({ item }) {
       />
 
       <div className=" space-y-4 lg:space-y-3  lg:w-full py-5 ">
-        <div className="font-semibold text-base lg:text-2xl line-clamp-1">
+        <div className="font-semibold text-sm md:text-base lg:text-2xl line-clamp-1">
           {item?.title}
         </div>
         {/* <div className="text-xs font-semibold line-clamp-1">
@@ -29,7 +29,7 @@ export default function Card({ item }) {
 
         <div className="text-xs font-semibold flex flex-wrap">
           <span className="text-gray-mute pe-2 line-clamp-1"> {text.productId} :</span>
-          {item?.sku}
+          <div className="w-full mt-1">{item?.sku}</div>
         </div>
       <div className="hidden  lg:block">
       <div

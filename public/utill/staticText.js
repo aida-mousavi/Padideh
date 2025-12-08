@@ -145,7 +145,6 @@ export const text = {
   call: "تماس",
   callUs: "تماس با ما",
   faq: "سوالات متداول",
-  postalCode: "1476844945",
   phoneNumber: "02144442215",
   lorem:
     "لورم ایپسوم متنی ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است",
@@ -199,14 +198,17 @@ export const project = {
 honor:"پروژه‌هایی که به آن‌ها افتخار می‌کنیم؛ از ایده تا اجرای دقیق",
 
   projects: "پروژه ها",
-  completedProjects:  "برخی از پروژه های انجام شده توسط شرکت یکتا سیستم ایمن ایرانیان",
+  descriptionProjects:  "پروژه های اجرایی توسط شرکت یکتا سیستم با مدیریت کاظم مهدی زاده انجام شده است",
 };
 export const exhibition = {
   exhibition: "حضور ما در نمایشگاه بین اللملی تهران",
 };
 
 export const footer = {
-  contactUs: "ارتباط با ما",
+  projects:"پروژه ها  ",
+  postalCode: "1476844945",
+  productList:"لیست محصولات",
+  aboutUs: "ارتباط با ما",
   pagesLink: "لینک صفحات",
   followUS: "ما را در شبکه‌های اجتماعی دنبال کنید.",
   copyright:
@@ -214,6 +216,7 @@ export const footer = {
   email: "info@yekta-system.com",
   companyAddress:
     "تهران، پونک شمالی ، سردارجنگل جنوبی ، نبش بهار غربی ساختمان کلاسیک ،  طبقه2 ، واحد 4",
+    factoryAdress:"استان مرکزی،شهرستان زرندیه، شهرک صنعتی زاویه،بلوار کوشش،خیابان نرگس 404،پلاک 0،قطعه دی 430،کارخانه پدیده ایلیا پارس"
 };
 
 export const channelTypes = {

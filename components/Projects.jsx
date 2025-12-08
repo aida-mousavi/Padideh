@@ -11,7 +11,7 @@ export default async function Projects() {
   return (
     <section className="w-full ">
 
-<Title title={project.honor} /> 
+<Title title={project.honor} description={project.descriptionProjects} /> 
    
    <ProjectSlider data={data} />
 
