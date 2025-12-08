@@ -1,9 +1,25 @@
+import config from "@/config/appConfig";
+
 export async function blogIndexApi() {
-    const res = await fetch("https://ricksanchezz.ir/v1/blog", {
+  try {
+    const res = await fetch(`${config.apiBaseUrl}/blog`, {
       next: { revalidate: 60 }
     });
-    const result=await res.json()
 
-  
+    if (!res.ok) {
+      throw new Error("خطا در دریافت لیست بلاگ‌ها");
+    }
+
+    const result = await res.json();
     return result.data;
+
+  } catch (error) {
+    console.error("❌ blogIndexApi Error:", error);
+
+    return {
+      error: true,
+      message: "در حال حاضر امکان دریافت اطلاعات وجود ندارد. لطفاً کمی بعد دوباره تلاش کنید.",
+      data: []
+    };
   }
+}
