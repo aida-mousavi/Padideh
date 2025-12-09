@@ -71,8 +71,10 @@ const ProductsPage = () => {
                                 <Button size={"sm"} className={"bg-red-600 font-medium cursor-pointer"}
                                         onClick={() => deleteProduct(product.id)}>
                                     <Trash2/> حذف</Button>
-                                <Button size={"sm"} className={"bg-orange-500 font-medium cursor-pointer"}> <SquarePen/>ویرایش
-                                </Button>
+                               <Link href={`/panel/products/${product.id}`}>
+                                   <Button size={"sm"} className={"bg-orange-500 font-medium cursor-pointer"}> <SquarePen/>ویرایش
+                                   </Button>
+                               </Link>
                             </TableCell>
                         </TableRow>
                     ))}
