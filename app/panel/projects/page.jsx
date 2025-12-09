@@ -5,14 +5,16 @@ import PageLoader from "@/app/panel/_components/Loader";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
-import {Plus, SquarePen, Trash2} from "lucide-react";
+import {Plus, SquarePen} from "lucide-react";
 import Link from "next/link";
 import {useGetProjects} from "@/http/api/project/hooks/projects-index";
-import useShamsiDate from "@/hooks/useShamsiDate";
+import DeleteProjectModal from "@/app/panel/projects/_components/DeleteProjectModal";
+import {useDeleteProject} from "@/http/api/project/hooks/projects-delete";
 
 const ProjectsPage = () => {
     const TAB_HEADS = ["تصویر", "عنوان", "لوکیشن", "زمان", "عملیات"]
     const {data, isLoading} = useGetProjects();
+    const {mutate, isPending} = useDeleteProject();
 
     if (isLoading) {
         return <PageLoader/>
@@ -29,6 +31,10 @@ const ProjectsPage = () => {
             day: "2-digit",
         }).format(new Date(dateInput));
     };
+
+    const deleteProductHandler = (id) => {
+        mutate(id)
+    }
 
     return (<section className="p-6">
         <div className={"flex items-center justify-between mb-10"}>
@@ -68,8 +74,10 @@ const ProjectsPage = () => {
                                     <p className={"line-clamp-1"}>{shamsiDate}</p>
                                 </TableCell>
                                 <TableCell className={"flex items-center gap-2"}>
-                                    <Button size={"sm"} className={"bg-red-600 font-medium cursor-pointer"}>
-                                        <Trash2/> حذف</Button>
+                                    <DeleteProjectModal
+                                        loading={isPending}
+                                        onConfirm={() => deleteProductHandler(product.id)}
+                                    />
                                     <Button size={"sm"} className={"bg-orange-500 font-medium cursor-pointer"}>
                                         <SquarePen/>ویرایش
                                     </Button>

@@ -93,7 +93,7 @@ export default function CreatePage() {
     };
 
     return (
-        <main className="max-w-3xl mx-auto p-8 space-y-8">
+        <main className="max-w-6xl mx-auto p-8 space-y-8">
 
             <Card>
                 <CardHeader>

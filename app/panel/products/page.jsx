@@ -16,7 +16,7 @@ import DeleteProductModal from "@/app/panel/products/_components/DeleteProductMo
 
 const ProductsPage = () => {
     const TAB_HEADS = ["تصویر", "عنوان", "برند", "دسته بندی", "عملیات"];
-    const {mutate, isPending} = useDeleteProduct(TAB_HEADS);
+    const {mutate, isPending} = useDeleteProduct();
 
     const deleteProductHandler = (id) => {
         mutate(id)
