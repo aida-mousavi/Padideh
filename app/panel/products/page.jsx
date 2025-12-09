@@ -11,6 +11,7 @@ import {Plus, SquarePen, Trash2} from "lucide-react";
 import Link from "next/link";
 import {deleteProduct, useDeleteProduct} from "@/http/api/product/hooks/products-delete";
 import toast from "react-hot-toast";
+import DeleteProductModal from "@/app/panel/products/_components/DeleteProductModal";
 // ------------------------------------------------------------------------------------->
 
 const ProductsPage = () => {
@@ -68,13 +69,15 @@ const ProductsPage = () => {
                                 <p className={"line-clamp-1"}>{product?.category}</p>
                             </TableCell>
                             <TableCell className={"flex items-center gap-2"}>
-                                <Button size={"sm"} className={"bg-red-600 font-medium cursor-pointer"}
-                                        onClick={() => deleteProduct(product.id)}>
-                                    <Trash2/> حذف</Button>
-                               <Link href={`/panel/products/${product.id}`}>
-                                   <Button size={"sm"} className={"bg-orange-500 font-medium cursor-pointer"}> <SquarePen/>ویرایش
-                                   </Button>
-                               </Link>
+                                <DeleteProductModal
+                                    loading={isPending}
+                                    onConfirm={() => deleteProductHandler(product.id)}
+                                />
+                                <Link href={`/panel/products/${product.id}`}>
+                                    <Button size={"sm"} className={"bg-orange-500 font-medium cursor-pointer"}>
+                                        <SquarePen/>ویرایش
+                                    </Button>
+                                </Link>
                             </TableCell>
                         </TableRow>
                     ))}

@@ -1,4 +1,4 @@
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 export async function createProduct(formData) {
     try {
@@ -15,7 +15,11 @@ export async function createProduct(formData) {
 }
 
 export const useCreateProduct = () => {
+    const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: createProduct
+        mutationFn: createProduct,
+        onSuccess: () => {
+            queryClient.invalidateQueries(["products"]);
+        },
     });
 };

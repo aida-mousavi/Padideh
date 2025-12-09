@@ -1,4 +1,4 @@
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 export async function deleteProduct(id) {
@@ -15,10 +15,11 @@ export async function deleteProduct(id) {
 }
 
 export const useDeleteProduct = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: deleteProduct,
         onSuccess: (res) => {
-            console.log("res",res)
+            queryClient.invalidateQueries(["products"]);
             toast.success(res.data.message);
         }
     });

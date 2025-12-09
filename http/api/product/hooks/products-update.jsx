@@ -1,4 +1,4 @@
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 export async function updateProduct(id, formData) {
     try {
@@ -15,8 +15,13 @@ export async function updateProduct(id, formData) {
 }
 
 export const useUpdateProduct = (id) => {
+    const queryClient = useQueryClient();
+
     return useMutation({
         mutationKey: ['product', id],
-        mutationFn: ({formData}) => updateProduct(id, formData)
+        mutationFn: ({formData}) => updateProduct(id, formData),
+        onSuccess: () => {
+            queryClient.invalidateQueries(["products"]);
+        },
     });
 };
