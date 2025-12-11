@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import { blogShow } from "@/http/api/blog/blog-show";
+import { blogShow } from "@/http/api/blog/hooks cop/blog-show";
 import Image from "next/image";
 
 export default async function page({params}) {
