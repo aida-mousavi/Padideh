@@ -17,6 +17,7 @@ import Link from "next/link";
 import { useGetProjects } from "@/http/api/project/hooks/projects-index";
 import DeleteProjectModal from "@/app/panel/projects/_components/DeleteProjectModal";
 import { useDeleteProject } from "@/http/api/project/hooks/projects-delete";
+import toast from "react-hot-toast";
 
 const ProjectsPage = () => {
   const TAB_HEADS = ["تصویر", "عنوان", "لوکیشن", "زمان", "عملیات"];
@@ -40,7 +41,16 @@ const ProjectsPage = () => {
   };
 
   const deleteProductHandler = (id) => {
-    mutate(id);
+    mutate(id, {
+      onSuccess: (res) => {
+        toast.success(res.message);
+        console.log("RESPONSE", res);
+      },
+      onError: (error) => {
+        toast.success(error.message);
+        console.log("ERROR", error);
+      },
+    });
   };
 
   return (
