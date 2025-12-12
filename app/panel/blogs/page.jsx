@@ -74,7 +74,7 @@ const BlogsPage = () => {
                 <TableRow key={blog.id}>
                   <TableCell>
                     <Image
-                      src={blog.image}
+                      src={`${blog.image}`}
                       width={60}
                       height={60}
                       alt={blog?.blogTitle}
@@ -89,8 +89,9 @@ const BlogsPage = () => {
                   <TableCell>
                     <p className={"line-clamp-1"}>
                       {blog?.tags
-                        ? blog?.tags?.map((tag) => (
+                        ? blog?.tags?.map((tag, index) => (
                             <span
+                              key={index}
                               className={"bg-gray-100 px-2 py-4 rounded-lg"}
                             >
                               {tag}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,40 +14,78 @@ import { useCreateBlog } from "@/http/api/blog/hooks/blog-create";
 
 export default function CreateBlogPage() {
   const router = useRouter();
-
   const { mutate, isPending } = useCreateBlog();
+
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState("");
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
       title: "",
       content: "",
+      desc: "",
       image: null,
     },
   });
 
+  // -------------------------------------------------------------
+  // ADD TAG
+  // -------------------------------------------------------------
+  const addTag = () => {
+    if (!tagInput.trim()) return;
+
+    if (!tags.includes(tagInput.trim())) {
+      setTags((prev) => [...prev, tagInput.trim()]);
+    }
+
+    setTagInput("");
+  };
+
+  // ENTER KEY ADD TAG
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addTag();
+    }
+  };
+
+  // REMOVE TAG
+  const removeTag = (index) => {
+    setTags((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // -------------------------------------------------------------
+  // SUBMIT FORM
+  // -------------------------------------------------------------
   const onSubmit = (data) => {
     const formData = new FormData();
 
     formData.append("title", data.title);
     formData.append("content", data.content);
+    formData.append("desc", data.desc);
 
+    // tags array
+    tags.forEach((tag) => {
+      formData.append("tags", tag);
+    });
+
+    // image upload
     if (data.image && data.image[0]) {
       formData.append("image", data.image[0]);
     }
 
     mutate(formData, {
       onSuccess: (res) => {
-        console.log(res);
-        toast.success(res.message);
+        toast.success(res.message || "بلاگ با موفقیت ایجاد شد");
         router.push("/panel/blogs");
       },
       onError: (err) => {
-        console.log("ERROR", err);
-        toast.error(err.message);
+        toast.error(err.message || "خطا در ایجاد بلاگ");
       },
     });
   };
 
+  // -------------------------------------------------------------
   return (
     <main className="max-w-4xl mx-auto p-8 space-y-8">
       <Card>
@@ -62,10 +101,17 @@ export default function CreateBlogPage() {
               {...register("title", { required: true })}
             />
 
+            {/* SHORT DESCRIPTION */}
+            <Textarea
+              rows={3}
+              placeholder="توضیح کوتاه (desc)..."
+              {...register("desc", { required: true })}
+            />
+
             {/* CONTENT */}
             <Textarea
-              rows={6}
-              placeholder="متن بلاگ..."
+              rows={7}
+              placeholder="متن کامل بلاگ..."
               {...register("content", { required: true })}
             />
 
@@ -79,9 +125,45 @@ export default function CreateBlogPage() {
               />
             </div>
 
+            {/* TAGS */}
+            <div>
+              <h3 className="font-semibold mb-2">تگ‌ها</h3>
+
+              <div className="flex gap-2">
+                <Input
+                  placeholder="تگ جدید..."
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={handleEnter}
+                />
+                <Button type="button" onClick={addTag}>
+                  اضافه
+                </Button>
+              </div>
+
+              {/* TAG LIST */}
+              <div className="flex flex-wrap gap-2 mt-3">
+                {tags.map((tag, index) => (
+                  <div
+                    key={index}
+                    className="px-3 py-1 bg-gray-200 rounded-full text-sm flex items-center gap-2"
+                  >
+                    {tag}
+                    <button
+                      type="button"
+                      onClick={() => removeTag(index)}
+                      className="text-red-500 font-bold"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* SUBMIT */}
             <Button type="submit" className="w-full" disabled={isPending}>
-              ثبت بلاگ
+              ایجاد بلاگ
             </Button>
           </form>
         </CardContent>
