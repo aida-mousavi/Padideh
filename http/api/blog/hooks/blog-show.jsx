@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-export async function ProductBlog(id) {
+export async function GetBlog(id) {
   try {
     const res = await fetch(`https://ricksanchezz.ir/v1/blog/${id}`);
     const result = await res.json();
@@ -15,6 +15,6 @@ export async function ProductBlog(id) {
 export const useGetBlog = (id) => {
   return useQuery({
     queryKey: ["blog", id],
-    queryFn: () => ProductBlog(id),
+    queryFn: () => GetBlog(id),
   });
 };
