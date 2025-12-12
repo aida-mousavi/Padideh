@@ -16,10 +16,13 @@ import { Plus, SquarePen, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useGetBlogs } from "@/http/api/blog/hooks/blogs-index";
 import config from "@/config/appConfig";
+import DeleteBlogModal from "./_components/DeleteBlogModal";
+import { useDeleteBlog } from "@/http/api/blog/hooks/blog-delete";
 
 const BlogsPage = () => {
   const TAB_HEADS = ["تصویر", "عنوان", "زمان", "تگ ها ", "عملیات"];
   const { data, isLoading } = useGetBlogs();
+  const { mutate, isPending } = useDeleteBlog();
 
   if (isLoading) {
     return <PageLoader />;
@@ -35,6 +38,10 @@ const BlogsPage = () => {
       month: "long",
       day: "2-digit",
     }).format(new Date(dateInput));
+  };
+
+  const deleteBlogHandler = (id) => {
+    mutate(id);
   };
 
   return (
@@ -81,20 +88,22 @@ const BlogsPage = () => {
                   </TableCell>
                   <TableCell>
                     <p className={"line-clamp-1"}>
-                      {blog.tags.map((tag) => (
-                        <span className={"bg-gray-100 px-2 py-4 rounded-lg"}>
-                          {tag}
-                        </span>
-                      ))}
+                      {blog?.tags
+                        ? blog?.tags?.map((tag) => (
+                            <span
+                              className={"bg-gray-100 px-2 py-4 rounded-lg"}
+                            >
+                              {tag}
+                            </span>
+                          ))
+                        : "-----"}
                     </p>
                   </TableCell>
                   <TableCell className={"flex items-center gap-2"}>
-                    <Button
-                      size={"sm"}
-                      className={"bg-red-600 font-medium cursor-pointer"}
-                    >
-                      <Trash2 /> حذف
-                    </Button>
+                    <DeleteBlogModal
+                      loading={isPending}
+                      onConfirm={() => deleteBlogHandler(blog.id)}
+                    />
                     <Link href={`/panel/blogs/${blog.id}`}>
                       <Button
                         size={"sm"}
