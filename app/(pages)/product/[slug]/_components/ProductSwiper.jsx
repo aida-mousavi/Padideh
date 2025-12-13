@@ -18,7 +18,7 @@ export default function ProductSwiper({ productIndexData }) {
     <SwiperSlide
       key={i}
       className="
-        !w-[75%] 
+        !w-[90%] 
         sm:!w-[250px] 
         md:!w-[300px] 
         lg:!w-[350px]
